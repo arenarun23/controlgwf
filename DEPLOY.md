@@ -1,7 +1,7 @@
 # 배포 기록 — controlgwf (Admin Helper 사본)
 
 이 저장소는 오픈소스 [Kang-T/admin-helper](https://github.com/Kang-T/admin-helper)(MIT)를 복사해 독립적으로 운영하는 사본이다.
-원본 git 기록은 가져오지 않았고 `LICENSE`는 그대로 둔다. 일반 절차와 문제 해결은 `skills/admin-helper-deploy/SKILL.md`를 본다.
+원본 git 기록은 가져오지 않았고 `LICENSE`는 그대로 둔다. 일반 절차와 문제 해결은 `.claude/skills/admin-helper-deploy/SKILL.md`를 본다.
 
 ## 현재 구성
 
@@ -44,7 +44,7 @@
 3. 확인:
 
 ```bash
-bash skills/admin-helper-deploy/scripts/check_deploy.sh \
+bash .claude/skills/admin-helper-deploy/scripts/check_deploy.sh \
   https://controlgwf.vercel.app \
   15884462982-8i051djemgchsl2pta1vg3fnuaerbn6q.apps.googleusercontent.com \
   http://localhost:5173/
