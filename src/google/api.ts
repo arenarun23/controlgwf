@@ -1,4 +1,5 @@
 import { clearToken, getToken } from "./auth";
+import { adminRole, type AdminRole } from "../adminrole";
 
 const DIRECTORY = "https://admin.googleapis.com/admin/directory/v1";
 const LICENSING = "https://licensing.googleapis.com/apps/licensing/v1";
@@ -115,6 +116,19 @@ export async function listUsers(opts: {
 
 export function getUser(email: string): Promise<User> {
   return request(`${DIRECTORY}/users/${enc(email)}`);
+}
+
+// ---- 관리자 여부 ----
+// 화면을 막는 안내용 확인이다. 실제 권한은 구글 API가 요청마다 따로 검사한다.
+// 일반 계정은 디렉터리 조회가 403(또는 도메인 밖 계정이라 404)으로 거절된다. 그 경우는 관리자가 아닌 것으로 본다.
+// 네트워크 오류 같은 그 밖의 실패는 판단할 수 없으니 그대로 던진다.
+export async function checkAdmin(email: string): Promise<AdminRole> {
+  try {
+    return adminRole(await getUser(email));
+  } catch (e) {
+    if (isStatus(e, 403) || isStatus(e, 404)) return "none";
+    throw e;
+  }
 }
 
 export function updateUser(
