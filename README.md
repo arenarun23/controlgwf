@@ -1,6 +1,6 @@
 # Admin Helper — Google Workspace 관리자 도우미
 
-운영 주소: **https://adhelp.kangt.kr** (공식 주소는 이것 하나입니다. 다른 주소에서 구글 로그인을 요구하면 로그인하지 마세요)
+오리지널 소스-운영 주소: **https://adhelp.kangt.kr** (공식 주소는 이것 하나입니다. 다른 주소에서 구글 로그인을 요구하면 로그인하지 마세요)
 · [가이드](https://adhelp.kangt.kr/guide/) · [개인정보처리방침](https://adhelp.kangt.kr/privacy/) · [보안 문제 신고](SECURITY.md)
 
 Google Admin Console에서 자주 하는 일을 한국어 버튼 하나로 처리하는 웹앱입니다.
