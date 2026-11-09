@@ -1,5 +1,6 @@
 import { useEffect, useState, type ComponentType, type ReactNode } from "react";
 import { CLIENT_ID, getToken, hasToken, signOut, takeLoginError } from "./google/auth";
+import { canUseApp } from "./adminrole";
 import { checkAdmin, errorMessage, getUserInfo, type User } from "./google/api";
 import { TASKS, type PanelProps, type TaskId } from "./catalog/tasks";
 import {
@@ -108,9 +109,9 @@ export default function App() {
   async function finishLogin() {
     try {
       const { email } = await getUserInfo();
-      if ((await checkAdmin(email)) === "none") {
+      if (!canUseApp(await checkAdmin(email))) {
         signOut();
-        setError("관리자 계정이 아닙니다. 워크스페이스 관리자 권한이 있는 계정으로 다시 로그인하세요");
+        setError("최고 관리자 계정만 사용할 수 있습니다. 최고 관리자 계정으로 다시 로그인하세요");
         return;
       }
       setConsoleAccount(email);

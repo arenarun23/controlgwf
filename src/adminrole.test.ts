@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { adminRole } from "./adminrole";
+import { adminRole, canUseApp } from "./adminrole";
 
 describe("adminRole", () => {
   it("최고 관리자", () => {
@@ -14,5 +14,13 @@ describe("adminRole", () => {
   it("일반 계정", () => {
     expect(adminRole({})).toBe("none");
     expect(adminRole({ isAdmin: false, isDelegatedAdmin: false })).toBe("none");
+  });
+});
+
+describe("canUseApp", () => {
+  it("최고 관리자만 허용", () => {
+    expect(canUseApp("super")).toBe(true);
+    expect(canUseApp("delegated")).toBe(false);
+    expect(canUseApp("none")).toBe(false);
   });
 });

@@ -6,3 +6,8 @@ export function adminRole(u: { isAdmin?: boolean; isDelegatedAdmin?: boolean }):
   if (u.isDelegatedAdmin) return "delegated";
   return "none";
 }
+
+// 이 앱을 쓸 수 있는 계정: 최고 관리자만. 위임 관리자도 허용하려면 여기만 바꾼다.
+export function canUseApp(role: AdminRole): boolean {
+  return role === "super";
+}
